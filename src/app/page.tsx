@@ -5,6 +5,7 @@ import { FormEvent, useState } from "react";
 import { IoIosSend } from "react-icons/io";
 import { redirect } from "next/navigation";
 import Loader from "@/components/Loader";
+import Countdown from "react-countdown";
 
 export default function Home() {
   const [data, setData] = useState({});
@@ -94,6 +95,9 @@ export default function Home() {
             {!isLoading && <JSONPlaceholder data={data} />}
           </div>
         </div>
+
+        <h1 className="mt-16 text-4xl font-bold mb-3">Until the end</h1>
+        <Countdown className="text-4xl font-bold text-amber-400" date={new Date("August 10, 2025 11:59 EST")} />
       </div>
     </div>
   );
