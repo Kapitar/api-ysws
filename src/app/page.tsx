@@ -45,10 +45,10 @@ export default function Home() {
   return (
     <div className="container mx-auto h-screen items-center flex justify-center">
       <div className="text-center">
-        <h1 className="font-bold text-5xl">Endpointer</h1>
-        <p className="text-xl mt-3">
-          You ship: Amazing REST API <br />
-          We Ship: Cloud Credits / Raspberry PI worth $30
+        <h1 className="font-bold text-5xl text-green-300">Endpointer</h1>
+        <p className="text-xl mt-8">
+          You ship: <span className="text-amber-400">Amazing REST API</span> <br />
+          We Ship: <span className="text-fuchsia-400">Cloud Credits / Raspberry PI worth $30</span>
         </p>
         <form className="flex justify-center mt-8 gap-x-4" onSubmit={onSubmit}>
           <div className="flex">
@@ -96,8 +96,8 @@ export default function Home() {
           </div>
         </div>
 
-        <h1 className="mt-16 text-4xl font-bold mb-3">Until the end</h1>
-        <Countdown className="text-4xl font-bold text-amber-400" date={new Date("August 10, 2025 11:59 EST")} />
+        <h1 className="mt-16 text-3xl font-bold mb-2">Until the end</h1>
+        <Countdown className="text-5xl font-bold text-amber-400" date={new Date("August 10, 2025 11:59 EST")} />
       </div>
     </div>
   );
