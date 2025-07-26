@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Source_Code_Pro } from "next/font/google";
 import "./globals.css";
+import Footer from "@/components/Footer";
 
 const sourceCodePro = Source_Code_Pro({
   subsets: ["latin"],
@@ -22,6 +23,7 @@ export default function RootLayout({
         className={`${sourceCodePro.className} antialiased bg-gray-900 text-white`}
       >
         {children}
+        <Footer />
       </body>
     </html>
   );
