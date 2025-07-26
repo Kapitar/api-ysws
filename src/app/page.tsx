@@ -65,7 +65,7 @@ export default function Home() {
           </div>
           <button
             type="submit"
-            className="py-2.5 px-4 bg-blue-700 rounded-lg hover:bg-blue-800"
+            className="py-2.5 px-4 bg-blue-700 rounded-lg hover:bg-blue-800 cursor-pointer"
           >
             <IoIosSend className="inline-block mr-2" />
             Send
