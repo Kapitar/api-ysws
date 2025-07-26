@@ -14,7 +14,7 @@ export default function Home() {
     const path = formData.get("path");
     fetch(`/api/${path}`).then(async (res) => {
       console.log(res);
-      if (res.status !== 201) {
+      if (res.status !== 200) {
         setData({
           success: false,
           message: "Invalid request",
@@ -50,14 +50,19 @@ export default function Home() {
             Send
           </button>
         </form>
-        <div className="mt-8 text-left">
+        <div className="mt-8 text-left w-full max-w-4xl">
           <h1 className="font-bold text-xl mb-2">Result</h1>
-          <div className="flex w-full border-2 border-gray-700 min-h-16 rounded-2xl p-4">
+          <div className="w-full border-2 border-gray-700 min-h-16 rounded-2xl p-4">
             <JSONPretty
               id="json-pretty"
               data={data}
+              style={{
+                width: "100%",
+                wordBreak: "break-word",
+                whiteSpace: "pre-wrap",
+              }}
               theme={{
-                main: "line-height:1.3;color:#66d9ef;overflow:auto;",
+                main: "line-height:1.3;color:#66d9ef;word-break:break-word;white-space:pre-wrap;",
                 error:
                   "line-height:1.3;color:#66d9ef;background:#272822;overflow:auto;",
                 key: "color:#f92672;",
