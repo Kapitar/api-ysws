@@ -35,7 +35,7 @@ export default function Home() {
   return (
     <div className="container mx-auto h-screen items-center flex justify-center">
       <div className="text-center">
-        <h1 className="font-bold text-5xl">API YSWS</h1>
+        <h1 className="font-bold text-5xl">Endpointer</h1>
         <p className="text-xl mt-3">
           You ship: Amazing REST API <br />
           We Ship: Cloud Credits / Raspberry PI
@@ -43,7 +43,7 @@ export default function Home() {
         <form className="flex justify-center mt-8 gap-x-4" onSubmit={onSubmit}>
           <div className="flex">
             <span className="bg-gray-700 py-2.5 px-4 text-white rounded-l-lg flex items-center">
-              https://apiysws.hackclub.com/api/
+              https://endpointer.hackclub.com/api/
             </span>
             <select
               className="text-white py-2.5 px-4 rounded-r-lg border-t-4 border-b-4 border-r-4 border-gray-700"
