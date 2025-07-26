@@ -1,21 +1,31 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 import { IoIosSend } from "react-icons/io";
 import JSONPretty from "react-json-pretty";
 
 export default function Home() {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetch("/api/requirements")
-      .then((res) => res.json())
-      .then((data) => {
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const path = formData.get("path");
+    fetch(`/api/${path}`).then(async (res) => {
+      console.log(res);
+      if (res.status !== 201) {
+        setData({
+          success: false,
+          message: "Invalid request",
+        });
+      } else {
+        const data = await res.json();
         setData(data);
-        setLoading(false);
-      });
-  }, []);
+      }
+      setLoading(false);
+    });
+  }
 
   return (
     <div className="container mx-auto h-screen items-center flex justify-center">
@@ -24,7 +34,7 @@ export default function Home() {
         <p className="text-xl mt-3">
           You ship: API, We Ship: Cloud Credits / Raspberry PI
         </p>
-        <form className="flex justify-center mt-8 gap-x-4" action="">
+        <form className="flex justify-center mt-8 gap-x-4" onSubmit={onSubmit}>
           <div className="flex">
             <span className="bg-gray-700 py-2.5 px-4 text-white rounded-l-lg flex items-center">
               https://apiysws.hackclub.com/api/
@@ -32,6 +42,7 @@ export default function Home() {
             <input
               className="text-white py-2.5 px-4 rounded-r-lg border-t-4 border-b-4 border-r-4 border-gray-700"
               type="text"
+              name="path"
             />
           </div>
           <button type="submit" className="py-2.5 px-4 bg-blue-700 rounded-lg">
