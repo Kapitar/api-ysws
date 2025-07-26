@@ -3,7 +3,6 @@ import { NextResponse } from "next/server";
 export async function GET(request: Request) {
   return NextResponse.json(
     { 
-      success: true, 
       requirements: {
         "requirement_1": "You need to be a high schooler!",
         "requirement_2": "Your YSWS must be creative and have purpose",
