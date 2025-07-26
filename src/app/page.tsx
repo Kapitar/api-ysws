@@ -1,5 +1,6 @@
 "use client";
 
+import JSONPlaceholder from "@/components/JSONPlaceholder";
 import { FormEvent, useState } from "react";
 import { IoIosSend } from "react-icons/io";
 import JSONPretty from "react-json-pretty";
@@ -53,24 +54,7 @@ export default function Home() {
         <div className="mt-8 text-left w-full max-w-4xl">
           <h1 className="font-bold text-xl mb-2">Result</h1>
           <div className="w-full border-2 border-gray-700 min-h-16 rounded-2xl p-4">
-            <JSONPretty
-              id="json-pretty"
-              data={data}
-              style={{
-                width: "100%",
-                wordBreak: "break-word",
-                whiteSpace: "pre-wrap",
-              }}
-              theme={{
-                main: "line-height:1.3;color:#66d9ef;word-break:break-word;white-space:pre-wrap;",
-                error:
-                  "line-height:1.3;color:#66d9ef;background:#272822;overflow:auto;",
-                key: "color:#f92672;",
-                string: "color:#fd971f;",
-                value: "color:#a6e22e;",
-                boolean: "color:#ac81fe;",
-              }}
-            ></JSONPretty>
+            <JSONPlaceholder data={data} />
           </div>
         </div>
       </div>
