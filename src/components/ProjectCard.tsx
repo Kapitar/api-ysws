@@ -8,6 +8,8 @@ interface ProjectCardProps {
   id: string;
   name: string;
   description: string;
+  githubLink: string;
+  swaggerLink: string;
   createdAt: Date;
 }
 
@@ -15,6 +17,8 @@ export default function ProjectCard({
   id,
   name,
   description,
+  githubLink,
+  swaggerLink,
   createdAt,
 }: ProjectCardProps) {
   const data = {
@@ -30,12 +34,12 @@ export default function ProjectCard({
         <JSONPlaceholder data={data} />
 
         <div className="flex gap-x-3">
-          <a href="/gallery/1" className="py-2.5 px-4 bg-blue-700 rounded-lg mt-4 hover:bg-blue-800">
+          <a href={swaggerLink} className="py-2.5 px-4 bg-blue-700 rounded-lg mt-4 hover:bg-blue-800">
             <RxOpenInNewWindow className="inline-block mr-2" />
-            Test
+            Try it out!
           </a>
 
-          <a href="https://github.com" className="py-2.5 px-4 bg-gray-700 rounded-lg mt-4 hover:bg-gray-800">
+          <a href={githubLink} className="py-2.5 px-4 bg-gray-700 rounded-lg mt-4 hover:bg-gray-800">
             <FaGithub className="inline-block mr-2" />
             Github
           </a>

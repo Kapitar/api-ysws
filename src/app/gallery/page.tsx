@@ -7,6 +7,8 @@ export default function Gallery() {
         <ProjectCard
           id="123132131"
           name="Project name"
+          githubLink="https://github.com/"
+          swaggerLink="https://editor.swagger.io/?_gl=1*dxaxx2*_gcl_au*Mzc2NzkyOTEuMTc1MzUzMDc1MA.."
           description="lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
           createdAt={new Date()}
         />
@@ -14,6 +16,8 @@ export default function Gallery() {
         <ProjectCard
           id="123132131"
           name="Project name"
+          githubLink="https://github.com/"
+          swaggerLink="https://editor.swagger.io/?_gl=1*dxaxx2*_gcl_au*Mzc2NzkyOTEuMTc1MzUzMDc1MA.."
           description="lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
           createdAt={new Date()}
         />
