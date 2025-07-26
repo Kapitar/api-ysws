@@ -1,0 +1,46 @@
+"use client";
+
+import JSONPlaceholder from "./JSONPlaceholder";
+import { RxOpenInNewWindow } from "react-icons/rx";
+import { FaGithub } from "react-icons/fa";
+
+interface ProjectCardProps {
+  id: string;
+  name: string;
+  description: string;
+  createdAt: Date;
+}
+
+export default function ProjectCard({
+  id,
+  name,
+  description,
+  createdAt,
+}: ProjectCardProps) {
+  const data = {
+    id: id,
+    name: name,
+    description: description,
+    createdAt: createdAt.toISOString(),
+  };
+
+  return (
+    <div className="w-full">
+      <div className="border-2 border-gray-700 rounded-xl px-4 py-4">
+        <JSONPlaceholder data={data} />
+
+        <div className="flex gap-x-3">
+          <a href="/gallery/1" className="py-2.5 px-4 bg-blue-700 rounded-lg mt-4 hover:bg-blue-800">
+            <RxOpenInNewWindow className="inline-block mr-2" />
+            Test
+          </a>
+
+          <a href="https://github.com" className="py-2.5 px-4 bg-gray-700 rounded-lg mt-4 hover:bg-gray-800">
+            <FaGithub className="inline-block mr-2" />
+            Github
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
