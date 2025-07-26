@@ -3,7 +3,7 @@
 import JSONPlaceholder from "@/components/JSONPlaceholder";
 import { FormEvent, useState } from "react";
 import { IoIosSend } from "react-icons/io";
-import JSONPretty from "react-json-pretty";
+import { redirect } from 'next/navigation'
 
 export default function Home() {
   const [data, setData] = useState({});
@@ -12,9 +12,17 @@ export default function Home() {
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
     setLoading(true);
     const formData = new FormData(event.currentTarget);
     const path = formData.get("path");
+
+    if (path === "gallery") {
+      redirect("gallery");
+    } else if (path === "submit") {
+      redirect("https://forms.hackclub.com/endpointer");
+    }
+
     fetch(`/api/${path}`).then(async (res) => {
       console.log(res);
       if (res.status !== 200) {
@@ -50,9 +58,9 @@ export default function Home() {
               name="path"
             >
               <option value="requirements">requirements</option>
-              <option value="submit">submit</option>
-              <option value="gallery">gallery</option>
               <option value="faq">faq</option>
+              <option value="gallery">gallery</option>
+              <option value="submit">submit</option>
             </select>
           </div>
           <button
