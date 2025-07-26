@@ -53,7 +53,19 @@ export default function Home() {
         <div className="mt-8 text-left">
           <h1 className="font-bold text-xl mb-2">Result</h1>
           <div className="flex w-full border-2 border-gray-700 min-h-16 rounded-2xl p-4">
-            <JSONPretty id="json-pretty" data={data}></JSONPretty>
+            <JSONPretty
+              id="json-pretty"
+              data={data}
+              theme={{
+                main: "line-height:1.3;color:#66d9ef;overflow:auto;",
+                error:
+                  "line-height:1.3;color:#66d9ef;background:#272822;overflow:auto;",
+                key: "color:#f92672;",
+                string: "color:#fd971f;",
+                value: "color:#a6e22e;",
+                boolean: "color:#ac81fe;",
+              }}
+            ></JSONPretty>
           </div>
         </div>
       </div>
