@@ -9,6 +9,8 @@ export async function GET(request: Request) {
         "Create 3 API endpoints following RESTful API Guidelines (each must have GET, POST, PUT, DELETE methods)",
         "Routes must include /api/auth/login and /api/auth/register",
         "One of the 3 API routes must be protected with authentication",
+        "Create a documentation for your API using Swagger",
+        "Track at least 5 hours using Hackatime."
       ]
     }
   );
