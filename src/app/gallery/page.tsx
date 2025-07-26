@@ -38,7 +38,7 @@ export default function Gallery() {
   }, []);
 
   return (
-    <div className="container mx-auto">
+    <div className="container px-4 mx-auto">
       <div className="p-4 border-2 border-gray-700 rounded-2xl mt-10">
         <p>
           <span className="text-green-600 font-bold">orpheus@hackclub:</span>
@@ -48,7 +48,7 @@ export default function Gallery() {
           https://endpointer.hackclub.com/api/gallery
         </p>
       </div>
-      <div className="grid grid-cols-2 mt-8 gap-4 items-stretch">
+      <div className="grid md:grid-cols-2 grid-cols-1 mt-8 gap-4 items-stretch">
         {isLoading ? <Loader /> : submissions.map((submission) => {
           return (
             <ProjectCard
