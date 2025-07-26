@@ -45,11 +45,15 @@ export default function Home() {
             <span className="bg-gray-700 py-2.5 px-4 text-white rounded-l-lg flex items-center">
               https://apiysws.hackclub.com/api/
             </span>
-            <input
+            <select
               className="text-white py-2.5 px-4 rounded-r-lg border-t-4 border-b-4 border-r-4 border-gray-700"
-              type="text"
               name="path"
-            />
+            >
+              <option value="requirements">requirements</option>
+              <option value="submit">submit</option>
+              <option value="gallery">gallery</option>
+              <option value="faq">faq</option>
+            </select>
           </div>
           <button
             type="submit"
