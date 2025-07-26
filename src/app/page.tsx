@@ -46,14 +46,14 @@ export default function Home() {
               name="path"
             />
           </div>
-          <button type="submit" className="py-2.5 px-4 bg-blue-700 rounded-lg">
+          <button type="submit" className="py-2.5 px-4 bg-blue-700 rounded-lg hover:bg-blue-800">
             <IoIosSend className="inline-block mr-2" />
             Send
           </button>
         </form>
         <div className="mt-8 text-left w-full max-w-4xl">
           <h1 className="font-bold text-xl mb-2">Result</h1>
-          <div className="w-full border-2 border-gray-700 min-h-16 rounded-2xl p-4">
+          <div className="w-full border-2 border-gray-700 rounded-2xl p-4">
             <JSONPlaceholder data={data} />
           </div>
         </div>
