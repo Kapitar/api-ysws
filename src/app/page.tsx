@@ -5,12 +5,17 @@ import { FormEvent, useState } from "react";
 import { IoIosSend } from "react-icons/io";
 import { redirect } from "next/navigation";
 import Loader from "@/components/Loader";
-import Countdown from "react-countdown";
+
+import dynamic from "next/dynamic";
 
 export default function Home() {
   const [data, setData] = useState({});
   const [isLoading, setLoading] = useState(false);
   const [success, setSuccess] = useState(true);
+
+  const NoSSRCountdown = dynamic(() => import("react-countdown"), {
+    ssr: false,
+  });
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -43,20 +48,27 @@ export default function Home() {
   }
 
   return (
-    <div className="container mx-auto h-screen items-center flex justify-center">
+    <div className="container px-4 md:py-0 py-16 mx-auto min-h-screen items-center flex justify-center">
       <div className="text-center">
         <h1 className="font-bold text-5xl text-green-300">Endpointer</h1>
         <p className="text-xl mt-8">
-          You ship: <span className="text-amber-400">Amazing REST API</span> <br />
-          We Ship: <span className="text-fuchsia-400">Cloud Credits / Raspberry PI worth $30</span>
+          You ship: <span className="text-amber-400">Amazing REST API</span>{" "}
+          <br />
+          We Ship:{" "}
+          <span className="text-fuchsia-400">
+            Cloud Credits / Raspberry PI worth $30
+          </span>
         </p>
-        <form className="flex justify-center mt-8 gap-x-4" onSubmit={onSubmit}>
-          <div className="flex">
-            <span className="bg-gray-700 py-2.5 px-4 text-white rounded-l-lg flex items-center">
+        <form
+          className="md:flex justify-center mt-8 gap-x-4"
+          onSubmit={onSubmit}
+        >
+          <div className="md:flex">
+            <span className="bg-gray-700 py-2.5 px-4 text-white md:rounded-l-lg md:rounded-r-none rounded-lg flex items-center">
               https://endpointer.hackclub.com/api/
             </span>
             <select
-              className="text-white py-2.5 px-4 rounded-r-lg border-t-4 border-b-4 border-r-4 border-gray-700"
+              className="text-white py-2.5 px-4 md:rounded-r-lg md:rounded-l-none md:border-l-none md:border-t-4 md:border-b-4 md:border-r-4 border-4 rounded-lg md:mt-0 md:mb-0 mt-3 mb-3 border-gray-700"
               name="path"
             >
               <option value="requirements">requirements</option>
@@ -97,7 +109,10 @@ export default function Home() {
         </div>
 
         <h1 className="mt-16 text-3xl font-bold mb-2">Until the end</h1>
-        <Countdown className="text-5xl font-bold text-amber-400" date={new Date("August 10, 2025 11:59 EST")} />
+        <NoSSRCountdown
+          className="text-5xl font-bold text-amber-400"
+          date={new Date("August 10, 2025 11:59 EST")}
+        />
       </div>
     </div>
   );
