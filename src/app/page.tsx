@@ -47,7 +47,7 @@ export default function Home() {
         <h1 className="font-bold text-5xl">Endpointer</h1>
         <p className="text-xl mt-3">
           You ship: Amazing REST API <br />
-          We Ship: Cloud Credits / Raspberry PI
+          We Ship: Cloud Credits / Raspberry PI worth $30
         </p>
         <form className="flex justify-center mt-8 gap-x-4" onSubmit={onSubmit}>
           <div className="flex">

@@ -10,7 +10,7 @@ export async function GET(request: Request) {
         "Routes must include /api/auth/login and /api/auth/register",
         "One of the 3 API routes must be protected with authentication",
         "Create a documentation for your API using Swagger",
-        "Track at least 5 hours using Hackatime."
+        "Track at least 6 hours using Hackatime."
       ]
     }
   );
