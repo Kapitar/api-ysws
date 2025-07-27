@@ -10,6 +10,7 @@ import { IoIosSend } from "react-icons/io";
 export default function Test() {
   const [isLoading, setLoading] = useState(false);
   const [data, setData] = useState({});
+  const [statusCode, setStatus] = useState<Number>();
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -25,9 +26,10 @@ export default function Test() {
       try {
         const data = await res.json();
         setData(data);
-      } catch(e) {
+      } catch (e) {
         setData({ error: "Failed to make a request." });
       }
+      setStatus(res.status);
       setLoading(false);
     });
   }
@@ -51,6 +53,7 @@ export default function Test() {
         <input
           type="text"
           name="path"
+          required
           placeholder="Enter API endpoint (e.g. http://localhost:3000/api/test)"
           className="w-full text-white py-2.5 px-4 border-4 md:rounded-r-lg md:rounded-l-none md:border-l-0 md:border-t-4 md:border-b-4 md:border-r-4 rounded-lg md:mt-0 md:mb-0 mt-3 mb-3 border-gray-700 focus:outline-none"
         />
@@ -63,7 +66,21 @@ export default function Test() {
         </button>
       </form>
 
-      <div className="w-full border-2 border-gray-700 rounded-2xl p-4 mt-8">
+      <h1 className="font-bold text-xl mb-2 mt-8">
+        Result
+        {" "}
+        {statusCode && statusCode.toString().startsWith("2") && (
+          <span className="text-green-500 text-sm font-normal">
+            {statusCode.toString()} Success
+          </span>
+        )}
+        {statusCode && (statusCode.toString().startsWith("4") || statusCode.toString().startsWith("5")) && (
+          <span className="text-red-500 text-sm font-normal">
+            {statusCode.toString()} Error
+          </span>
+        )}
+      </h1>
+      <div className="w-full border-2 border-gray-700 rounded-2xl p-4">
         {isLoading && <Loader />}
 
         {!isLoading && <JSONPlaceholder data={data} />}
