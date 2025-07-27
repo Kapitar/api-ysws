@@ -17,17 +17,16 @@ export default function Test() {
     setLoading(true);
     const formData = new FormData(event.currentTarget);
     const path = formData.get("path") as string;
+    const method = formData.get("method") as string;
 
-    fetch(path).then(async (res) => {
-      console.log(res);
-      if (res.status !== 200) {
-        setData({
-          success: false,
-          message: "Invalid request",
-        });
-      } else {
+    fetch(path, {
+      method: method,
+    }).then(async (res) => {
+      try {
         const data = await res.json();
         setData(data);
+      } catch(e) {
+        setData({ error: "Failed to make a request." });
       }
       setLoading(false);
     });

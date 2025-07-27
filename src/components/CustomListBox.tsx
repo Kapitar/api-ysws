@@ -18,7 +18,7 @@ export default function CustomListBox({ options }: CustomListBoxProps) {
   const [selected, setSelected] = useState(options[0]);
 
   return (
-    <div className="">
+    <div>
       <Listbox value={selected} onChange={setSelected}>
         <ListboxButton className="flex items-center justify-center w-full py-2.5 px-4 md:rounded-l-lg md:border-l-4 md:border-b-4 md:border-t-4 border-gray-700 font-bold focus:outline-none focus:ring-0focus:outline-none focus:ring-0">
           <span className={`${selected.className}`}>{selected.name}</span>
@@ -51,6 +51,8 @@ export default function CustomListBox({ options }: CustomListBoxProps) {
           ))}
         </ListboxOptions>
       </Listbox>
+
+      <input type="hidden" name="method" value={selected.name} />
     </div>
   );
 }
