@@ -2,6 +2,7 @@
 
 import Loader from "@/components/Loader";
 import ProjectCard from "@/components/ProjectCard";
+import TerminalPlaceholder from "@/components/TerminalPlaceholder";
 import { useEffect, useState } from "react";
 
 interface Submission {
@@ -9,7 +10,7 @@ interface Submission {
   fields: {
     "Project Name": string;
     "Code URL": string;
-    "Description": string;
+    Description: string;
     "Playable URL": string;
   };
 }
@@ -21,7 +22,9 @@ export default function Gallery() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://api2.hackclub.com/v0.1/Hackmate/Hackmate Project Submission");
+        const response = await fetch(
+          "https://api2.hackclub.com/v0.1/Hackmate/Hackmate Project Submission"
+        );
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -39,29 +42,25 @@ export default function Gallery() {
 
   return (
     <div className="container px-4 mx-auto">
-      <div className="p-4 border-2 border-gray-700 rounded-2xl mt-10">
-        <p>
-          <span className="text-green-600 font-bold">orpheus@hackclub:</span>
-          <span className="text-blue-600 font-bold">~</span>
-          <span className="text-white font-bold">$ </span>
-          <span className="text-blue-600">curl </span>
-          https://endpointer.hackclub.com/api/gallery
-        </p>
-      </div>
+      <TerminalPlaceholder fetchUrl="https://endpointer.hackclub.com/api/gallery" />
       <div className="grid md:grid-cols-2 grid-cols-1 mt-8 gap-4 items-stretch">
-        {isLoading ? <Loader /> : submissions.map((submission) => {
-          return (
-            <ProjectCard
-              key={submission.id}
-              id={submission.id}
-              name={submission.fields['Project Name']}
-              githubLink={submission.fields['Code URL']}
-              swaggerLink={submission.fields['Playable URL']}
-              description={submission.fields['Description'].trim()}
-              createdAt={new Date()}
-            />
-          );
-        })}
+        {isLoading ? (
+          <Loader />
+        ) : (
+          submissions.map((submission) => {
+            return (
+              <ProjectCard
+                key={submission.id}
+                id={submission.id}
+                name={submission.fields["Project Name"]}
+                githubLink={submission.fields["Code URL"]}
+                swaggerLink={submission.fields["Playable URL"]}
+                description={submission.fields["Description"].trim()}
+                createdAt={new Date()}
+              />
+            );
+          })
+        )}
       </div>
     </div>
   );
