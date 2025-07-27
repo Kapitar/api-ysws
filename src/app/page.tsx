@@ -48,7 +48,7 @@ export default function Home() {
   }
 
   return (
-    <div className="container px-4 md:py-0 py-16 mx-auto min-h-screen items-center flex justify-center">
+    <div className="container px-4 py-16 mx-auto min-h-screen items-center flex justify-center">
       <div className="text-center">
         <img
           className="justify-center mx-auto"
