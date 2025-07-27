@@ -111,7 +111,7 @@ export default function Home() {
         <h1 className="mt-16 text-3xl font-bold mb-2">Until the end</h1>
         <NoSSRCountdown
           className="text-5xl font-bold text-amber-400"
-          date={new Date("August 10, 2025 11:59 EST")}
+          date={new Date("August 12, 2025 23:59 EST")}
         />
       </div>
     </div>
