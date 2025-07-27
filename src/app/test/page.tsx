@@ -1,15 +1,43 @@
 "use client";
 
 import CustomListBox from "@/components/CustomListBox";
+import JSONPlaceholder from "@/components/JSONPlaceholder";
+import Loader from "@/components/Loader";
 import TerminalPlaceholder from "@/components/TerminalPlaceholder";
+import { FormEvent, useState } from "react";
 import { IoIosSend } from "react-icons/io";
 
 export default function Test() {
+  const [isLoading, setLoading] = useState(false);
+  const [data, setData] = useState({});
+
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    setLoading(true);
+    const formData = new FormData(event.currentTarget);
+    const path = formData.get("path") as string;
+
+    fetch(path).then(async (res) => {
+      console.log(res);
+      if (res.status !== 200) {
+        setData({
+          success: false,
+          message: "Invalid request",
+        });
+      } else {
+        const data = await res.json();
+        setData(data);
+      }
+      setLoading(false);
+    });
+  }
+
   return (
     <div className="container px-4 mx-auto">
       <TerminalPlaceholder fetchUrl="https://endpointer.hackclub.com/api/test" />
 
-      <form className="flex mt-16">
+      <form onSubmit={onSubmit} className="flex mt-16">
         <CustomListBox
           options={[
             { name: "GET", className: "text-green-400" },
@@ -23,6 +51,7 @@ export default function Test() {
         </div>
         <input
           type="text"
+          name="path"
           placeholder="Enter API endpoint (e.g. http://localhost:3000/api/test)"
           className="w-full text-white py-2.5 px-4 border-4 md:rounded-r-lg md:rounded-l-none md:border-l-0 md:border-t-4 md:border-b-4 md:border-r-4 rounded-lg md:mt-0 md:mb-0 mt-3 mb-3 border-gray-700 focus:outline-none"
         />
@@ -34,6 +63,12 @@ export default function Test() {
           Send
         </button>
       </form>
+
+      <div className="w-full border-2 border-gray-700 rounded-2xl p-4 mt-8">
+        {isLoading && <Loader />}
+
+        {!isLoading && <JSONPlaceholder data={data} />}
+      </div>
     </div>
   );
 }
