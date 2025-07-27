@@ -50,8 +50,14 @@ export default function Home() {
   return (
     <div className="container px-4 md:py-0 py-16 mx-auto min-h-screen items-center flex justify-center">
       <div className="text-center">
-        <h1 className="font-bold text-5xl text-green-300">Endpointer</h1>
-        <p className="text-xl mt-8">
+        <img
+          className="justify-center mx-auto"
+          alt="Endpointer"
+          width={500}
+          height={500}
+          src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/f8f4e0214d6f67c2171dc20d61c91d09fa88f429_endpointer.png"
+        />
+        <p className="text-xl">
           You ship: <span className="text-amber-400">Amazing REST API</span>{" "}
           <br />
           We Ship:{" "}
