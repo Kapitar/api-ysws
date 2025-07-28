@@ -28,6 +28,8 @@ export default function Home() {
       redirect("gallery");
     } else if (path === "submit") {
       redirect("https://forms.hackclub.com/endpointer");
+    } else if (path === "test") {
+      redirect("test");
     }
 
     fetch(`/api/${path}`).then(async (res) => {
@@ -79,6 +81,7 @@ export default function Home() {
             >
               <option value="requirements">requirements</option>
               <option value="faq">faq</option>
+              <option value="test">test</option>
               <option value="gallery">gallery</option>
               <option value="submit">submit</option>
             </select>
