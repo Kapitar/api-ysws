@@ -16,6 +16,7 @@ export default function Test() {
     { key: string; value: string }[]
   >([{ key: "", value: "" }]);
   const [authorization, setAuthorization] = useState("");
+  const [bodyParams, setBodyParams] = useState("");
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -30,23 +31,35 @@ export default function Test() {
       urlParams[key] = value;
     });
 
-    console.log(authorization)
-    fetch(path + "?" + new URLSearchParams(urlParams).toString(), {
-      method: method,
-      headers: new Headers({
-        'Authorization': authorization, 
-        'Content-Type': 'application/json',
-    }), 
-    }).then(async (res) => {
+    const headers: Record<string, string> = {};
+    if (authorization) headers.Authorization = authorization;
+    if (method !== "GET") headers["Content-Type"] = "application/json";
+
+    const init: RequestInit = { method, headers };
+
+    if (method !== "GET" && bodyParams) {
       try {
-        const data = await res.json();
-        setData(data);
-      } catch (e) {
-        setData({ error: "Failed to make a request." });
+        init.body = JSON.parse(bodyParams);
+        init.body = bodyParams;
+      } catch {
+        setData({ error: "Invalid JSON format in body params." });
+        setLoading(false);
+        return;
       }
-      setStatus(res.status);
-      setLoading(false);
-    });
+    }
+
+    fetch(path + "?" + new URLSearchParams(urlParams).toString(), init).then(
+      async (res) => {
+        try {
+          const data = await res.json();
+          setData(data);
+        } catch (e) {
+          setData({ error: "Failed to make a request." });
+        }
+        setStatus(res.status);
+        setLoading(false);
+      }
+    );
   }
 
   return (
@@ -175,9 +188,17 @@ export default function Test() {
         />
       )}
 
-      {/* {activeTab === "body" && (
-
-      )} */}
+      {activeTab === "body" && (
+        <textarea
+          name="body"
+          value={bodyParams}
+          onChange={(e) =>
+            setBodyParams((e.target as HTMLTextAreaElement).value)
+          }
+          placeholder="Enter request body (JSON format)"
+          className="w-full h-48 px-4 py-2 rounded-xl border-2 border-gray-700"
+        ></textarea>
+      )}
 
       <h1 className="font-bold text-xl mb-2 mt-8">
         Result{" "}
