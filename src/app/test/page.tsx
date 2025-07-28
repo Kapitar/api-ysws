@@ -11,6 +11,10 @@ export default function Test() {
   const [isLoading, setLoading] = useState(false);
   const [data, setData] = useState({});
   const [statusCode, setStatus] = useState<Number>();
+  const [activeTab, setActiveTab] = useState("query");
+  const [queryParams, setQueryParams] = useState<
+    { key: string; value: string }[]
+  >([{ key: "", value: "" }]);
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -66,19 +70,102 @@ export default function Test() {
         </button>
       </form>
 
+      <ul className="flex gap-x-8 mt-6 mb-6 cursor-pointer">
+        <div
+          onClick={() => setActiveTab("query")}
+          className={`pb-2 border-b-2 ${
+            activeTab === "query" ? "border-amber-400" : "border-transparent"
+          }`}
+        >
+          <li className="hover:text-gray-300">Query Params</li>
+        </div>
+        <div
+          onClick={() => setActiveTab("body")}
+          className={`pb-2 border-b-2 ${
+            activeTab === "body" ? "border-amber-400" : "border-transparent"
+          }`}
+        >
+          <li className="hover:text-gray-300">Body Params</li>
+        </div>
+        <div
+          onClick={() => setActiveTab("authorization")}
+          className={`pb-2 border-b-2 ${
+            activeTab === "authorization"
+              ? "border-amber-400"
+              : "border-transparent"
+          }`}
+        >
+          <li className="hover:text-gray-300">Authorization</li>
+        </div>
+      </ul>
+
+      {activeTab === "query" && (
+        <>
+          <div className="flex flex-col gap-y-2">
+            {queryParams.map((param, i) => (
+              <div className="flex gap-x-2" key={i}>
+                <input
+                  type="text"
+                  placeholder="Key"
+                  value={param.key}
+                  onChange={(e) => {
+                    const newParams = [...queryParams];
+                    newParams[i].key = (e.target as HTMLInputElement).value;
+                    setQueryParams(newParams);
+                  }}
+                  className="px-4 py-2 rounded-xl border-2 border-gray-700 w-full"
+                />
+                <input
+                  type="text"
+                  placeholder="Value"
+                  value={param.value}
+                  onChange={(e) => {
+                    const newParams = [...queryParams];
+                    newParams[i].value = (e.target as HTMLInputElement).value;
+                    setQueryParams(newParams);
+                  }}
+                  className="px-4 py-2 rounded-xl border-2 border-gray-700 w-full"
+                />
+                <button
+                  className="py-2 px-4 bg-red-500 rounded-lg hover:bg-red-600 cursor-pointer w-32"
+                  onClick={() => {
+                    const newParams = [...queryParams];
+                    newParams.splice(i, 1);
+                    setQueryParams(newParams);
+                  }}
+                >
+                  Delete
+                </button>
+              </div>
+            ))}
+          </div>
+
+          <button
+            className="py-2 px-4 bg-green-500 rounded-lg hover:bg-green-600 cursor-pointer max-w-32 mt-4"
+            onClick={() => {
+              const newParams = [...queryParams, { key: "", value: "" }];
+              setQueryParams(newParams);
+            }}
+          >
+            Add more
+          </button>
+        </>
+      )}
+
       <h1 className="font-bold text-xl mb-2 mt-8">
-        Result
-        {" "}
+        Result{" "}
         {statusCode && statusCode.toString().startsWith("2") && (
           <span className="text-green-500 text-sm font-normal">
             {statusCode.toString()} Success
           </span>
         )}
-        {statusCode && (statusCode.toString().startsWith("4") || statusCode.toString().startsWith("5")) && (
-          <span className="text-red-500 text-sm font-normal">
-            {statusCode.toString()} Error
-          </span>
-        )}
+        {statusCode &&
+          (statusCode.toString().startsWith("4") ||
+            statusCode.toString().startsWith("5")) && (
+            <span className="text-red-500 text-sm font-normal">
+              {statusCode.toString()} Error
+            </span>
+          )}
       </h1>
       <div className="w-full border-2 border-gray-700 rounded-2xl p-4">
         {isLoading && <Loader />}
