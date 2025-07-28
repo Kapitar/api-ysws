@@ -64,7 +64,7 @@ export default function Home() {
           <br />
           We Ship:{" "}
           <span className="text-fuchsia-400">
-            Cloud Credits / Raspberry PI worth $30
+            Cloud Credits / Raspberry PI worth $15
           </span>
         </p>
         <form
