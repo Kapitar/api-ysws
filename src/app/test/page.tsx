@@ -24,7 +24,12 @@ export default function Test() {
     const path = formData.get("path") as string;
     const method = formData.get("method") as string;
 
-    fetch(path, {
+    const urlParams: Record<string, string> = {};
+    queryParams.forEach(({ key, value }) => {
+      urlParams[key] = value;
+    });
+
+    fetch(path + "?" + new URLSearchParams(urlParams).toString(), {
       method: method,
     }).then(async (res) => {
       try {
