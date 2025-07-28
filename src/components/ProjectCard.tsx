@@ -10,7 +10,6 @@ interface ProjectCardProps {
   description: string;
   githubLink: string;
   swaggerLink: string;
-  createdAt: Date;
 }
 
 export default function ProjectCard({
@@ -19,13 +18,11 @@ export default function ProjectCard({
   description,
   githubLink,
   swaggerLink,
-  createdAt,
 }: ProjectCardProps) {
   const data = {
     id: id,
     name: name,
     description: description,
-    createdAt: createdAt.toISOString(),
   };
 
   return (

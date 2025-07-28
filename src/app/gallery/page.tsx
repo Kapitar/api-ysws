@@ -23,7 +23,7 @@ export default function Gallery() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://api2.hackclub.com/v0.1/Hackmate/Hackmate Project Submission"
+          "https://api2.hackclub.com/v0.1/Endpointer/Endpointer Project Submission"
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -56,7 +56,6 @@ export default function Gallery() {
                 githubLink={submission.fields["Code URL"]}
                 swaggerLink={submission.fields["Playable URL"]}
                 description={submission.fields["Description"].trim()}
-                createdAt={new Date()}
               />
             );
           })
