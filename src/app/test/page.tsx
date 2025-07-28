@@ -15,6 +15,7 @@ export default function Test() {
   const [queryParams, setQueryParams] = useState<
     { key: string; value: string }[]
   >([{ key: "", value: "" }]);
+  const [authorization, setAuthorization] = useState("");
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -29,8 +30,13 @@ export default function Test() {
       urlParams[key] = value;
     });
 
+    console.log(authorization)
     fetch(path + "?" + new URLSearchParams(urlParams).toString(), {
       method: method,
+      headers: new Headers({
+        'Authorization': authorization, 
+        'Content-Type': 'application/json',
+    }), 
     }).then(async (res) => {
       try {
         const data = await res.json();
@@ -156,6 +162,22 @@ export default function Test() {
           </button>
         </>
       )}
+
+      {activeTab === "authorization" && (
+        <input
+          type="text"
+          placeholder="Value"
+          value={authorization}
+          onChange={(e) =>
+            setAuthorization((e.target as HTMLInputElement).value)
+          }
+          className="px-4 py-2 rounded-xl border-2 border-gray-700 w-full"
+        />
+      )}
+
+      {/* {activeTab === "body" && (
+
+      )} */}
 
       <h1 className="font-bold text-xl mb-2 mt-8">
         Result{" "}
