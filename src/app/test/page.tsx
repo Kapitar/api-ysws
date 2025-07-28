@@ -47,7 +47,7 @@ export default function Test() {
     <div className="container px-4 mx-auto">
       <TerminalPlaceholder fetchUrl="https://endpointer.hackclub.com/api/test" />
 
-      <form onSubmit={onSubmit} className="flex mt-16">
+      <form onSubmit={onSubmit} className="flex mt-8">
         <CustomListBox
           options={[
             { name: "GET", className: "text-green-400" },
