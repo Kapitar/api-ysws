@@ -10,7 +10,7 @@ import { IoIosSend } from "react-icons/io";
 export default function Test() {
   const [isLoading, setLoading] = useState(false);
   const [data, setData] = useState({});
-  const [statusCode, setStatus] = useState();
+  const [statusCode, setStatus] = useState<number>();
   const [activeTab, setActiveTab] = useState("query");
   const [queryParams, setQueryParams] = useState<
     { key: string; value: string }[]
