@@ -62,7 +62,7 @@ export default function Home() {
           <br />
           We Ship:{" "}
           <span className="text-fuchsia-400">
-            Grant for Cloud Credits / Raspberry PI up to $40
+            Grant for Cloud Credits / Raspberry Pi up to $40
           </span>
         </p>
         <form
