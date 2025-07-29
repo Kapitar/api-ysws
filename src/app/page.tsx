@@ -76,7 +76,7 @@ export default function Home() {
               https://endpointer.hackclub.com/api/
             </span>
             <select
-              className="text-white py-2.5 px-4 md:rounded-r-lg md:rounded-l-none md:border-l-none md:border-t-4 md:border-b-4 md:border-r-4 border-4 rounded-lg md:mt-0 md:mb-0 mt-3 mb-3 border-gray-700"
+              className="text-white bg-gray-900 py-2.5 px-4 md:rounded-r-lg md:rounded-l-none md:border-l-none md:border-t-4 md:border-b-4 md:border-r-4 border-4 rounded-lg md:mt-0 md:mb-0 mt-3 mb-3 border-gray-700"
               name="path"
             >
               <option value="requirements">requirements</option>
