@@ -82,7 +82,7 @@ export default function Test() {
           type="text"
           name="path"
           required
-          placeholder="Enter API endpoint (e.g. http://localhost:3000/api/test)"
+          placeholder="Enter API endpoint (e.g. https://endpointer.hackclub.com/api/...)"
           className="w-full text-white py-2.5 px-4 border-4 md:rounded-r-lg md:rounded-l-none md:border-l-0 md:border-t-4 md:border-b-4 md:border-r-4 rounded-lg md:mt-0 md:mb-0 mt-3 mb-3 border-gray-700 focus:outline-none"
         />
         <button

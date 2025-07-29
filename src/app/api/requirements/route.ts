@@ -9,8 +9,8 @@ export async function GET(request: Request) {
       "Your API must have at least one PUT and one DELETE endpoint.",
       "Your API must have a database to store data.",
       "Document your entire API using Swagger (OpenAPI).",
-      "If you add JWT authentication and create a protected path for authenticated users and log at least 8 hours, you will get $40 grant.",
-      "Log at least five hours of work using Hackatime.",
+      "Log at least five hours of work using Hackatime and get $25 grant.",
+      "If you add JWT authentication and create a protected path for authenticated users and log at least 8 hours, you will get $40 grant",
     ]
   });
 }
