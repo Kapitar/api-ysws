@@ -26,8 +26,6 @@ export default function Home() {
 
     if (path === "gallery") {
       redirect("gallery");
-    } else if (path === "submit") {
-      redirect("https://forms.hackclub.com/endpointer");
     } else if (path === "test") {
       redirect("test");
     }
